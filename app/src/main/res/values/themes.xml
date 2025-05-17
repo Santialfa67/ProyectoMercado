@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.MyAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    </style>
+    <style name="Theme.MyAppTheme" parent="Base.Theme.MyAppTheme" />
+
+    <style name="Base.Theme.MyAppTheme.Night" parent="Theme.AppCompat.DayNight.NoActionBar">
+    </style>
+    <style name="Theme.MyAppTheme.Night" parent="Base.Theme.MyAppTheme.Night" />
+</resources>
