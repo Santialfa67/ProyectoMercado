@@ -5,36 +5,44 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.adapters.CarritoAdapter
 
-class CarritoActivity : AppCompatActivity() {
+class CarritoActivity : AppCompatActivity(), CarritoAdapter.OnItemClickListener {
 
     private lateinit var recyclerViewCarrito: RecyclerView
     private lateinit var carritoAdapter: CarritoAdapter
     private lateinit var textViewTotalCarrito: TextView
-    private var listaDeCarrito: List<Producto> = emptyList() // Inicialmente vacío
+    private var listaDeCarrito: MutableList<Producto> = mutableListOf() // Cambiamos a MutableList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_carrito)
 
-        val toolbarCarrito: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar_carrito)
-        setSupportActionBar(toolbarCarrito)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true) // Botón "Atrás"
-
+        // Inicializar vistas
         recyclerViewCarrito = findViewById(R.id.recyclerViewCarrito)
         textViewTotalCarrito = findViewById(R.id.textViewTotalCarrito)
 
+        // ... (el resto de tu código onCreate) ...
+
         // Obtener la lista del carrito desde MainActivity
-        listaDeCarrito = (intent.getParcelableArrayListExtra<Producto>("carrito") ?: emptyList())
+        listaDeCarrito = (intent.getParcelableArrayListExtra<Producto>("carrito") ?: mutableListOf())
 
         // Configurar el RecyclerView
         recyclerViewCarrito.layoutManager = LinearLayoutManager(this)
-        carritoAdapter = CarritoAdapter(listaDeCarrito) // Todavía no hemos creado el CarritoAdapter
+        carritoAdapter = CarritoAdapter(listaDeCarrito)
         recyclerViewCarrito.adapter = carritoAdapter
+
+        // Registrar el listener para los clics del botón eliminar
+        carritoAdapter.setOnItemClickListener(this)
 
         // Calcular y mostrar el total
         actualizarTotalCarrito()
+    }
+
+    override fun onItemEliminarClick(position: Int) {
+        listaDeCarrito.removeAt(position)
+        carritoAdapter.notifyItemRemoved(position)
+        actualizarTotalCarrito()
+        // Opcionalmente, podrías mostrar un Toast o Snackbar de confirmación
     }
 
     private fun actualizarTotalCarrito() {

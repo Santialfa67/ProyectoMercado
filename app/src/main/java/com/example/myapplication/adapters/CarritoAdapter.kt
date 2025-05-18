@@ -1,4 +1,4 @@
-package com.example.myapplication.adapters
+package com.example.myapplication
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,22 +6,36 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.Producto
-import com.example.myapplication.R
 
-class CarritoAdapter(private val listaDeCarrito: List<Producto>) :
+class CarritoAdapter(private var listaDeCarrito: MutableList<Producto>) :
     RecyclerView.Adapter<CarritoAdapter.CarritoViewHolder>() {
 
-    class CarritoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val nombreTextView: TextView = itemView.findViewById(R.id.textViewNombreCarrito)
-        val precioTextView: TextView = itemView.findViewById(R.id.textViewPrecioCarrito)
-        val eliminarButton: Button = itemView.findViewById(R.id.buttonEliminarCarrito)
+    interface OnItemClickListener {
+        fun onItemEliminarClick(position: Int)
+    }
+
+    private var listener: OnItemClickListener? = null
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
+    }
+
+    class CarritoViewHolder(itemView: View, private val listener: OnItemClickListener?) :
+        RecyclerView.ViewHolder(itemView) {
+
+        private val nombreTextView: TextView = itemView.findViewById(R.id.textViewNombreCarrito)
+        private val precioTextView: TextView = itemView.findViewById(R.id.textViewPrecioCarrito)
+        private val eliminarButton: Button = itemView.findViewById(R.id.buttonEliminarCarrito)
 
         fun bind(producto: Producto) {
             nombreTextView.text = producto.nombre
             precioTextView.text = "$${String.format("%.2f", producto.precio)}"
 
             eliminarButton.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION && listener != null) {
+                    listener.onItemEliminarClick(position)
+                }
             }
         }
     }
@@ -29,7 +43,7 @@ class CarritoAdapter(private val listaDeCarrito: List<Producto>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarritoViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_carrito, parent, false)
-        return CarritoViewHolder(itemView)
+        return CarritoViewHolder(itemView, listener)
     }
 
     override fun onBindViewHolder(holder: CarritoViewHolder, position: Int) {
