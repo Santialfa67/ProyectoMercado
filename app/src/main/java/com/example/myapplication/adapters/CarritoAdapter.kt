@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.model.Producto
 
 class CarritoAdapter(private var listaDeCarrito: MutableList<Producto>) :
     RecyclerView.Adapter<CarritoAdapter.CarritoViewHolder>() {
