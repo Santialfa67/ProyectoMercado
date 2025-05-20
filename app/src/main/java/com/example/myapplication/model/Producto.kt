@@ -10,6 +10,14 @@ data class Producto(
     val nombre: String,
     val descripcion: String,
     val precio: Double,
-    val imagen: String? // O el tipo de dato que uses para las imágenes
-    // ... otros campos del producto
+    val imagen: String?,
+    val stock: Int?,
+    val proveedor: Proveedor? // Si la información del proveedor es un objeto
+    // O val proveedor: String? si solo envías el nombre del proveedor como String
+) : Parcelable
+
+@Parcelize
+data class Proveedor(
+    val id: Int,
+    val nombre: String
 ) : Parcelable
