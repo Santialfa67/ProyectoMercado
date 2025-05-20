@@ -54,6 +54,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1") // Corrutinas para operaciones asíncronas
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.0-alpha01") // ViewModel KTX para viewModels()
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.0-alpha01")    // LiveData KTX
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
 
     implementation ("com.squareup.picasso:picasso:2.8") // Asegúrate de usar la versión más reciente si lo deseas
 

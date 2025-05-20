@@ -20,6 +20,7 @@ import com.example.myapplication.ui.categoria.CategoriaAdapter
 import com.example.myapplication.ui.categoria.CategoriaViewModel
 import com.example.myapplication.ui.producto.ProductoAdapter
 
+
 class MainActivity : AppCompatActivity(), ProductoAdapter.OnItemClickListener {
 
     private lateinit var recyclerViewProductos: RecyclerView
