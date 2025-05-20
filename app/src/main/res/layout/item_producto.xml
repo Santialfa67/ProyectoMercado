@@ -1,42 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/imageViewProducto"
+        android:layout_width="395sp"
+        android:layout_height="130sp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_launcher_foreground" />
 
     <TextView
         android:id="@+id/textViewNombreProducto"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
         android:textStyle="bold"
-        tools:text="Nombre del Producto"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:textSize="16sp"
+        android:text="Nombre del Producto" />
 
     <TextView
         android:id="@+id/textViewPrecioProducto"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14sp"
-        android:textColor="@color/design_default_color_primary"
-        tools:text="$99.99"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNombreProducto"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="4dp" />
+        android:text="$99.99" />
 
-    <TextView
-        android:id="@+id/textViewDescripcionProducto"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textSize="12sp"
-        tools:text="Breve descripción del producto."
-        app:layout_constraintTop_toBottomOf="@+id/textViewPrecioProducto"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="4dp" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
